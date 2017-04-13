@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ ${DIB_DEBUG_TRACE:-1} -gt 0 ]; then
+    set -x
+fi
+set -eu
+set -o pipefail
+
+SRCDIR=$(dirname $0)
+
+#copy the updated cloud init config file to /etc/cloud
+install -D -g root -o root -m 0755 ${SRCDIR}/cloud.cfg /etc/cloud/cloud.cfg
+
+#copy cc_set_password to cover the orignal cloudinit file to surpoort password injection
+install -D -g root -o root ${SRCDIR}/cc_set_passwords.py /usr/lib/python2.7/site-packages/cloudinit/config/cc_set_passwords.py
