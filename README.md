@@ -10,5 +10,7 @@ the patch currently only support ubuntu and centos 7 to fit the root password.ho
 ## step to patch 
 
 * git clone this repository
-* cp {diskimage_build_patch}/centos7 diskimage-builder/elements/centos7
-* cp {diskimage_build_patch}/ubuntu diskimage-builder/elements/ubuntu
+* cp -r {diskimage_build_patch}/centos7/install.d diskimage-builder/elements/centos7
+* cp -r {diskimage_build_patch}/ubuntu/install.d diskimage-builder/elements/ubuntu
+* chmod +755 diskimage-builder/elements/ubuntu/install.d/99-modifycloudinit
+* chmod +755 diskimage-builder/elements/centos7/install.d/99-modifycloudinit
